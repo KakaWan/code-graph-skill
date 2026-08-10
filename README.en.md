@@ -5,7 +5,7 @@
 <h1 align="center">code-graph</h1>
 
 <p align="center">
-  Builds a three-level call graph (module → file → function) of your project
+  Builds a four-level structure graph (module → file → class → function) of your project
   and lets Claude query small subgraphs by keyword instead of reading source code.
   <br>
   <b>Everything runs locally</b>: scanning, parsing, querying and visualization never touch the network,
@@ -38,7 +38,7 @@ Parsing and querying all run on your own machine (just Python 3.8+).
 
 ## Features
 
-- **Three levels**: modules (import-level dependencies) → files → functions/classes with call relations
+- **Four levels**: modules (import-level dependencies) → files → classes → functions with call relations
 - **Hash-based incremental updates**: content hashes (sha256) detect changes, only changed files are re-parsed; changes pulled via `git pull` are picked up too
 - **Keyword search**: returns a small subgraph — matching symbols with signature, file, line, callers/callees, and module slice path
 - **Self-contained visualization**: `code-graph.html` inlines all data, styles and scripts — double-click to open (`file://`), no server needed
