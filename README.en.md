@@ -28,6 +28,9 @@ which blows the token budget on large projects. code-graph does the opposite:
 3. Claude reads the graph first, queries small subgraphs by keyword, and only reads source files
    when the graph isn't enough.
 
+The graph comes with a self-contained `code-graph.html` — double-click it to browse the module,
+file and function dependency structure in any browser, no server or tooling needed.
+
 Querying a graph instead of reading source saves tokens, and cross-file dependencies become explicit.
 
 Parsing and querying all run on your own machine (just Python 3.8+).
