@@ -5,7 +5,7 @@
 <h1 align="center">code-graph</h1>
 
 <p align="center">
-  Claude Code 技能：为项目生成「模块 — 文件 — 函数」三级调用图，按关键词检索小子图，用图代替读源码。
+  为项目生成「模块 — 文件 — 函数」三级调用图，按关键词检索小子图，用图代替读源码。
   <br>
   <b>全部在本机执行</b>：扫描、解析、查询、可视化全程无网络请求，代码不出本地，无第三方依赖。
 </p>
@@ -26,7 +26,7 @@
 
 检索图代替读源码，省 token 的同时，跨文件依赖也说得清。
 
-解析和查询全部跑在你自己机器上（只需要系统自带的 Python 3.8+），**代码内容不会上传到任何地方**。
+解析和查询全部跑在你自己机器上（只需要 Python 3.8+），**代码内容不会上传到任何地方**。
 
 ## 功能
 
@@ -53,7 +53,7 @@
 
 ## 安装
 
-需要 [Claude Code](https://docs.anthropic.com/zh-CN/docs/claude-code/setup)（建议 1.0.0+）。把本仓库的 `SKILL.md` 和 `scripts/` 放到 Claude 的全局技能目录：
+需要 [Claude Code](https://docs.anthropic.com/zh-CN/docs/claude-code/setup)。把本仓库的 `SKILL.md` 和 `scripts/` 放到 Claude 的全局技能目录：
 
 ```bash
 # macOS / Linux
@@ -127,13 +127,16 @@ Claude 理解项目时：先读 `index.md` 了解结构 → 按任务关键词�
 ## 常见问题
 
 **`.code-graph/` 目录要提交到版本库吗？**
-不需要，它是生成物，建议加入 `.gitignore`。
+它是生成物，通常不需要提交，建议加入 `.gitignore`。
 
 **改了代码，图不更新？**
-下次技能调用时自动哈希检测、增量更新；也可以在改动完成后手动跑一次 `update.py`。
+下次运行 `update.py` 时自动哈希检测、增量更新（Claude Code 会话中会自动触发）；也可以在改动完成后手动跑一次立即同步。
 
-**能用非 Python 环境吗？**
-不能，解析脚本是 Python 的（3.8+，标准库，无第三方包）。
+**项目不是 Python 写的，能用吗？**
+能。Kotlin / Java / Python / TypeScript（含 JS）/ Go 会解析类、函数与调用链；其他语言（C/C++/Rust/Swift 等）退化为文件级结构（无符号、无调用链），图依然能生成。
+
+**运行需要什么环境？**
+只需要 Python 3.8+（标准库，无第三方包）。
 
 ## License
 

@@ -5,7 +5,7 @@
 <h1 align="center">code-graph</h1>
 
 <p align="center">
-  A Claude Code skill that builds a three-level call graph (module → file → function) of your project
+  Builds a three-level call graph (module → file → function) of your project
   and lets Claude query small subgraphs by keyword instead of reading source code.
   <br>
   <b>Everything runs locally</b>: scanning, parsing, querying and visualization never touch the network,
@@ -30,7 +30,7 @@ which blows the token budget on large projects. code-graph does the opposite:
 
 Querying a graph instead of reading source saves tokens, and cross-file dependencies become explicit.
 
-Parsing and querying all run on your own machine (just Python 3.8+, which you already have).
+Parsing and querying all run on your own machine (just Python 3.8+).
 **Your code never leaves your computer.**
 
 ## Features
@@ -58,7 +58,7 @@ Generated `.code-graph/` directory (hash manifest + graph data + module slices +
 
 ## Installation
 
-Requires [Claude Code](https://docs.anthropic.com/en/docs/claude-code/setup) (1.0.0+ recommended). Put the `SKILL.md` and `scripts/` from this repo into Claude's global skills directory:
+Requires [Claude Code](https://docs.anthropic.com/en/docs/claude-code/setup). Put the `SKILL.md` and `scripts/` from this repo into Claude's global skills directory:
 
 ```bash
 # macOS / Linux
@@ -138,13 +138,16 @@ See `SKILL.md` for details.
 ## FAQ
 
 **Should `.code-graph/` be committed to version control?**
-No — it's generated output. Add it to `.gitignore`.
+It's generated output — usually no. Add it to `.gitignore`.
 
 **I changed the code, the graph is stale?**
-The skill re-detects changes by hash and updates incrementally on its next invocation; you can also run `update.py` manually after a bigger change.
+The next `update.py` run detects changes by hash and updates incrementally (triggered automatically in Claude Code sessions); you can also run it manually right after a bigger change.
 
-**Does it need anything besides Python?**
-No. Python 3.8+ (standard library only, no third-party packages).
+**My project isn't written in Python — will it still work?**
+Yes. Kotlin / Java / Python / TypeScript (incl. JS) / Go get full class/function/call-chain parsing; other languages (C/C++/Rust/Swift etc.) fall back to file-level structure (no symbols, no call edges) — the graph is still generated.
+
+**What environment does it need?**
+Just Python 3.8+ (standard library only, no third-party packages).
 
 ## License
 

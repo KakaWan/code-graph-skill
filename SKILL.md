@@ -86,6 +86,6 @@ description: "项目结构图系统：哈希增量生成/更新模块-文件-函
 
 ## 即插即用
 
-本 skill 已**全局部署**在 `~/.claude/skills/code-graph/`（Windows: `%USERPROFILE%\.claude\skills\code-graph\`），对所有项目自动可用，无需每个项目复制——这与项目代码完全无关，是独立的通用基础设施。唯一要求：Python 3.8+（系统自带，无第三方包）。
+本 skill 已**全局部署**在 `~/.claude/skills/code-graph/`（Windows: `%USERPROFILE%\.claude\skills\code-graph\`），对所有项目自动可用，无需每个项目复制——这与项目代码完全无关，是独立的通用基础设施。唯一要求：Python 3.8+（无第三方包）。
 
 图生成物 `.code-graph/` 存于各项目根，是否提交版本控制由项目自行决定。如某项目需要独立副本（如团队共享或离线环境），把该目录复制到项目 `.claude/skills/` 下即可。
