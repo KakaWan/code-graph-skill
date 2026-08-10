@@ -21,7 +21,7 @@
 让 Claude 理解一个陌生项目，常规做法是把源码塞进上下文——项目一大就超 token。code-graph 反过来：
 
 1. 先把项目结构解析成一张图（模块依赖、文件关系、函数调用）；
-2. 存到项目根目录的 `.code-graph/`；
+2. 存到项目路径（`--root` 指向的目录）下的 `.code-graph/`；
 3. Claude 理解项目时先读图、按关键词检索小子图，只在图信息不够时局部读源码。
 
 图生成的同时附带一个自包含的 `code-graph.html`：双击用浏览器打开，就能直接查看模块、文件、函数之间的依赖结构，不需要服务器或任何工具。
@@ -80,15 +80,15 @@ Copy-Item -Recurse code-graph-skill "$env:USERPROFILE\.claude\skills\code-graph"
 
 ```bash
 # 更新图（增量。Windows 用 python，其他用 python3）
-python ~/.claude/skills/code-graph/scripts/update.py --root <项目根>
-# Windows: python %USERPROFILE%\.claude\skills\code-graph\scripts\update.py --root <项目根>
+python ~/.claude/skills/code-graph/scripts/update.py --root <项目路径>
+# Windows: python %USERPROFILE%\.claude\skills\code-graph\scripts\update.py --root <项目路径>
 
 # 按关键词检索
-python ~/.claude/skills/code-graph/scripts/query.py --root <项目根> <关键词>
+python ~/.claude/skills/code-graph/scripts/query.py --root <项目路径> <关键词>
 
 # 按文件检索 / 机器可读输出
-python ~/.claude/skills/code-graph/scripts/query.py --root <项目根> --file src/main.kt
-python ~/.claude/skills/code-graph/scripts/query.py --root <项目根> <关键词> --json
+python ~/.claude/skills/code-graph/scripts/query.py --root <项目路径> --file src/main.kt
+python ~/.claude/skills/code-graph/scripts/query.py --root <项目路径> <关键词> --json
 ```
 
 `update.py` 每次运行后会自动重新生成 `.code-graph/code-graph.html`，双击即可浏览：
@@ -99,7 +99,7 @@ python ~/.claude/skills/code-graph/scripts/query.py --root <项目根> <关键�
 - 数千节点的项目也能流畅交互（Canvas 渲染 + 力导向模拟）
 
 > `update.py` 也支持只重新生成 HTML（不重新扫描源码）：
-> `python ...\scripts\render_html.py --root <项目根>`
+> `python ...\scripts\render_html.py --root <项目路径>`
 
 ## 工作原理
 

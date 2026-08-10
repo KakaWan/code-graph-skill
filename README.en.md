@@ -24,7 +24,7 @@ The usual way to help Claude understand an unfamiliar project is to stuff the so
 which blows the token budget on large projects. code-graph does the opposite:
 
 1. Parse the project into a graph (module dependencies, file relations, function calls);
-2. Store it in `.code-graph/` at the project root;
+2. Store it in `.code-graph/` at the project path (the directory passed to `--root`);
 3. Claude reads the graph first, queries small subgraphs by keyword, and only reads source files
    when the graph isn't enough.
 
@@ -89,15 +89,15 @@ You can also run the scripts directly:
 
 ```bash
 # Update the graph (incremental). Use python on Windows, python3 elsewhere
-python ~/.claude/skills/code-graph/scripts/update.py --root <project-root>
-# Windows: python %USERPROFILE%\.claude\skills\code-graph\scripts\update.py --root <project-root>
+python ~/.claude/skills/code-graph/scripts/update.py --root <project-path>
+# Windows: python %USERPROFILE%\.claude\skills\code-graph\scripts\update.py --root <project-path>
 
 # Search by keyword
-python ~/.claude/skills/code-graph/scripts/query.py --root <project-root> <keyword>
+python ~/.claude/skills/code-graph/scripts/query.py --root <project-path> <keyword>
 
 # Search by file / machine-readable output
-python ~/.claude/skills/code-graph/scripts/query.py --root <project-root> --file src/main.kt
-python ~/.claude/skills/code-graph/scripts/query.py --root <project-root> <keyword> --json
+python ~/.claude/skills/code-graph/scripts/query.py --root <project-path> --file src/main.kt
+python ~/.claude/skills/code-graph/scripts/query.py --root <project-path> <keyword> --json
 ```
 
 Every `update.py` run regenerates `.code-graph/code-graph.html` — double-click to explore:
@@ -108,7 +108,7 @@ Every `update.py` run regenerates `.code-graph/code-graph.html` — double-click
 - Stays interactive even with thousands of nodes (Canvas rendering + force simulation)
 
 > To only re-render the HTML without rescanning source code:
-> `python ...\scripts\render_html.py --root <project-root>`
+> `python ...\scripts\render_html.py --root <project-path>`
 
 ## How it works
 
