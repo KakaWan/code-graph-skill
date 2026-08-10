@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640">
+  <rect width="1280" height="640" fill="#0d1117"/>
+  <!-- 左侧环形图（相对 logo 放大 1.45 倍，中心 420,320） -->
+  <g transform="translate(100,46) scale(1.45)">
+    <g stroke="#8b949e" stroke-opacity="0.35" stroke-width="4" fill="none">
+      <line x1="256" y1="116" x2="355" y2="157"/>
+      <line x1="355" y1="157" x2="396" y2="256"/>
+      <line x1="396" y1="256" x2="355" y2="355"/>
+      <line x1="355" y1="355" x2="256" y2="396"/>
+      <line x1="256" y1="396" x2="157" y2="355"/>
+      <line x1="157" y1="355" x2="116" y2="256"/>
+      <line x1="116" y1="256" x2="157" y2="157"/>
+      <line x1="157" y1="157" x2="256" y2="116"/>
+    </g>
+    <g stroke="#8b949e" stroke-opacity="0.5" stroke-width="4" fill="none">
+      <line x1="256" y1="256" x2="256" y2="116"/>
+      <line x1="256" y1="256" x2="355" y2="157"/>
+      <line x1="256" y1="256" x2="396" y2="256"/>
+      <line x1="256" y1="256" x2="355" y2="355"/>
+      <line x1="256" y1="256" x2="256" y2="396"/>
+      <line x1="256" y1="256" x2="157" y2="355"/>
+      <line x1="256" y1="256" x2="116" y2="256"/>
+      <line x1="256" y1="256" x2="157" y2="157"/>
+    </g>
+    <circle cx="256" cy="116" r="26" fill="#79c0ff"/>
+    <circle cx="355" cy="157" r="26" fill="#56d364"/>
+    <circle cx="396" cy="256" r="26" fill="#f0883e"/>
+    <circle cx="355" cy="355" r="26" fill="#ff7b72"/>
+    <circle cx="256" cy="396" r="26" fill="#bc8cff"/>
+    <circle cx="157" cy="355" r="26" fill="#f778ba"/>
+    <circle cx="116" cy="256" r="26" fill="#39c5cf"/>
+    <circle cx="157" cy="157" r="26" fill="#d29922"/>
+    <circle cx="256" cy="256" r="56" fill="#e6edf3"/>
+    <circle cx="256" cy="256" r="40" fill="#0d1117"/>
+    <circle cx="256" cy="256" r="18" fill="#e6edf3"/>
+  </g>
+  <!-- 右侧文字 -->
+  <text x="660" y="280" font-family="Segoe UI, -apple-system, Arial, sans-serif" font-size="88" font-weight="600" fill="#e6edf3">code-graph</text>
+  <text x="662" y="352" font-family="Segoe UI, -apple-system, Arial, sans-serif" font-size="38" fill="#8b949e">Project structure graphs for Claude Code</text>
+  <text x="662" y="416" font-family="Segoe UI, -apple-system, Arial, sans-serif" font-size="30" fill="#6e7681">Search small subgraphs instead of reading source code</text>
+  <text x="662" y="490" font-family="Segoe UI, -apple-system, Arial, sans-serif" font-size="28" fill="#58a6ff">100% local · incremental · zero third-party dependencies</text>
+</svg>

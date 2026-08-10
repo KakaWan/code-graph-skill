@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="112" fill="#0d1117"/>
+  <!-- 外环相邻连线 -->
+  <g stroke="#8b949e" stroke-opacity="0.35" stroke-width="4" fill="none">
+    <line x1="256" y1="116" x2="355" y2="157"/>
+    <line x1="355" y1="157" x2="396" y2="256"/>
+    <line x1="396" y1="256" x2="355" y2="355"/>
+    <line x1="355" y1="355" x2="256" y2="396"/>
+    <line x1="256" y1="396" x2="157" y2="355"/>
+    <line x1="157" y1="355" x2="116" y2="256"/>
+    <line x1="116" y1="256" x2="157" y2="157"/>
+    <line x1="157" y1="157" x2="256" y2="116"/>
+  </g>
+  <!-- 中心到外环节点 -->
+  <g stroke="#8b949e" stroke-opacity="0.5" stroke-width="4" fill="none">
+    <line x1="256" y1="256" x2="256" y2="116"/>
+    <line x1="256" y1="256" x2="355" y2="157"/>
+    <line x1="256" y1="256" x2="396" y2="256"/>
+    <line x1="256" y1="256" x2="355" y2="355"/>
+    <line x1="256" y1="256" x2="256" y2="396"/>
+    <line x1="256" y1="256" x2="157" y2="355"/>
+    <line x1="256" y1="256" x2="116" y2="256"/>
+    <line x1="256" y1="256" x2="157" y2="157"/>
+  </g>
+  <!-- 外环节点（按模块着色） -->
+  <circle cx="256" cy="116" r="26" fill="#79c0ff"/>
+  <circle cx="355" cy="157" r="26" fill="#56d364"/>
+  <circle cx="396" cy="256" r="26" fill="#f0883e"/>
+  <circle cx="355" cy="355" r="26" fill="#ff7b72"/>
+  <circle cx="256" cy="396" r="26" fill="#bc8cff"/>
+  <circle cx="157" cy="355" r="26" fill="#f778ba"/>
+  <circle cx="116" cy="256" r="26" fill="#39c5cf"/>
+  <circle cx="157" cy="157" r="26" fill="#d29922"/>
+  <!-- 中心 hub -->
+  <circle cx="256" cy="256" r="56" fill="#e6edf3"/>
+  <circle cx="256" cy="256" r="40" fill="#0d1117"/>
+  <circle cx="256" cy="256" r="18" fill="#e6edf3"/>
+  <!-- 文字 -->
+  <text x="256" y="478" text-anchor="middle" font-family="Segoe UI, -apple-system, Arial, sans-serif" font-size="46" font-weight="600" fill="#e6edf3">code-graph</text>
+</svg>
