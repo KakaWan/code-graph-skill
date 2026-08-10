@@ -85,6 +85,9 @@ No manual steps for daily use: Claude Code invokes the skill automatically at se
 when it gets a code task (update the graph first, then query by keyword, read source only when
 the graph isn't enough).
 
+You can also type `/code-graph` in the input box to invoke it manually (it shows up in the
+slash-command menu once deployed globally) — this runs the update protocol and refreshes the graph.
+
 You can also run the scripts directly:
 
 ```bash

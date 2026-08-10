@@ -76,6 +76,8 @@ Copy-Item -Recurse code-graph-skill "$env:USERPROFILE\.claude\skills\code-graph"
 
 日常不需要手动操作：Claude Code 在会话开始、接到代码修改/理解任务时会自动调用本技能（先更新图，再按关键词检索，图信息不足时才读源码）。
 
+也可以直接在输入框敲 `/code-graph` 手动调用（全局部署后即出现在斜杠命令菜单），执行更新协议、刷新图数据。
+
 也可以直接跑脚本：
 
 ```bash
