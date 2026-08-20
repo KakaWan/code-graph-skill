@@ -5,7 +5,7 @@
 <h1 align="center">code-graph</h1>
 
 <p align="center">
-  为项目生成「模块 — 文件 — 函数」三级调用图，按关键词检索小子图，用图代替读源码。
+  为项目生成「模块 — 文件 — 类 — 函数」四层结构图，按关键词检索小子图，用图代替读源码。
   <br>
   <b>全部在本机执行</b>：扫描、解析、查询、可视化全程无网络请求，代码不出本地，无第三方依赖。
 </p>
@@ -21,7 +21,7 @@
 让 Claude 理解一个陌生项目，常规做法是把源码塞进上下文——项目一大就超 token。code-graph 反过来：
 
 1. 先把项目结构解析成一张图（模块依赖、文件关系、函数调用）；
-2. 存到项目根目录的 `.code-graph/`；
+2. 存到项目路径（`--root` 指向的目录）下的 `.code-graph/`；
 3. Claude 理解项目时先读图、按关键词检索小子图，只在图信息不够时局部读源码。
 
 图生成的同时附带一个自包含的 `code-graph.html`：双击用浏览器打开，就能直接查看模块、文件、函数之间的依赖结构，不需要服务器或任何工具。
@@ -32,7 +32,7 @@
 
 ## 功能
 
-- **三级结构**：模块（import 级依赖）→ 文件 → 函数/类调用关系
+- **四层结构**：模块（import 级依赖）→ 文件 → 类 → 函数调用关系
 - **哈希增量更新**：按内容哈希（sha256）检测变更，只重新解析变化的文件；`git pull` 拉来的别人改动也能发现
 - **关键词检索**：返回小子图——命中符号的签名、文件、行号、调用者/被调用者，以及所属模块分片
 - **自包含可视化**：`code-graph.html` 的数据、样式、脚本全部内联，双击即开（`file://`），不需要服务器
@@ -76,19 +76,21 @@ Copy-Item -Recurse code-graph-skill "$env:USERPROFILE\.claude\skills\code-graph"
 
 日常不需要手动操作：Claude Code 在会话开始、接到代码修改/理解任务时会自动调用本技能（先更新图，再按关键词检索，图信息不足时才读源码）。
 
+也可以直接在输入框敲 `/code-graph` 手动调用（全局部署后即出现在斜杠命令菜单），执行更新协议、刷新图数据。
+
 也可以直接跑脚本：
 
 ```bash
 # 更新图（增量。Windows 用 python，其他用 python3）
-python ~/.claude/skills/code-graph/scripts/update.py --root <项目根>
-# Windows: python %USERPROFILE%\.claude\skills\code-graph\scripts\update.py --root <项目根>
+python ~/.claude/skills/code-graph/scripts/update.py --root <项目路径>
+# Windows: python %USERPROFILE%\.claude\skills\code-graph\scripts\update.py --root <项目路径>
 
 # 按关键词检索
-python ~/.claude/skills/code-graph/scripts/query.py --root <项目根> <关键词>
+python ~/.claude/skills/code-graph/scripts/query.py --root <项目路径> <关键词>
 
 # 按文件检索 / 机器可读输出
-python ~/.claude/skills/code-graph/scripts/query.py --root <项目根> --file src/main.kt
-python ~/.claude/skills/code-graph/scripts/query.py --root <项目根> <关键词> --json
+python ~/.claude/skills/code-graph/scripts/query.py --root <项目路径> --file src/main.kt
+python ~/.claude/skills/code-graph/scripts/query.py --root <项目路径> <关键词> --json
 ```
 
 `update.py` 每次运行后会自动重新生成 `.code-graph/code-graph.html`，双击即可浏览：
@@ -99,7 +101,7 @@ python ~/.claude/skills/code-graph/scripts/query.py --root <项目根> <关键�
 - 数千节点的项目也能流畅交互（Canvas 渲染 + 力导向模拟）
 
 > `update.py` 也支持只重新生成 HTML（不重新扫描源码）：
-> `python ...\scripts\render_html.py --root <项目根>`
+> `python ...\scripts\render_html.py --root <项目路径>`
 
 ## 工作原理
 

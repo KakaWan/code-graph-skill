@@ -5,7 +5,7 @@
 <h1 align="center">code-graph</h1>
 
 <p align="center">
-  Builds a three-level call graph (module → file → function) of your project
+  Builds a four-level structure graph (module → file → class → function) of your project
   and lets Claude query small subgraphs by keyword instead of reading source code.
   <br>
   <b>Everything runs locally</b>: scanning, parsing, querying and visualization never touch the network,
@@ -24,7 +24,7 @@ The usual way to help Claude understand an unfamiliar project is to stuff the so
 which blows the token budget on large projects. code-graph does the opposite:
 
 1. Parse the project into a graph (module dependencies, file relations, function calls);
-2. Store it in `.code-graph/` at the project root;
+2. Store it in `.code-graph/` at the project path (the directory passed to `--root`);
 3. Claude reads the graph first, queries small subgraphs by keyword, and only reads source files
    when the graph isn't enough.
 
@@ -38,7 +38,7 @@ Parsing and querying all run on your own machine (just Python 3.8+).
 
 ## Features
 
-- **Three levels**: modules (import-level dependencies) → files → functions/classes with call relations
+- **Four levels**: modules (import-level dependencies) → files → classes → functions with call relations
 - **Hash-based incremental updates**: content hashes (sha256) detect changes, only changed files are re-parsed; changes pulled via `git pull` are picked up too
 - **Keyword search**: returns a small subgraph — matching symbols with signature, file, line, callers/callees, and module slice path
 - **Self-contained visualization**: `code-graph.html` inlines all data, styles and scripts — double-click to open (`file://`), no server needed
@@ -85,19 +85,22 @@ No manual steps for daily use: Claude Code invokes the skill automatically at se
 when it gets a code task (update the graph first, then query by keyword, read source only when
 the graph isn't enough).
 
+You can also type `/code-graph` in the input box to invoke it manually (it shows up in the
+slash-command menu once deployed globally) — this runs the update protocol and refreshes the graph.
+
 You can also run the scripts directly:
 
 ```bash
 # Update the graph (incremental). Use python on Windows, python3 elsewhere
-python ~/.claude/skills/code-graph/scripts/update.py --root <project-root>
-# Windows: python %USERPROFILE%\.claude\skills\code-graph\scripts\update.py --root <project-root>
+python ~/.claude/skills/code-graph/scripts/update.py --root <project-path>
+# Windows: python %USERPROFILE%\.claude\skills\code-graph\scripts\update.py --root <project-path>
 
 # Search by keyword
-python ~/.claude/skills/code-graph/scripts/query.py --root <project-root> <keyword>
+python ~/.claude/skills/code-graph/scripts/query.py --root <project-path> <keyword>
 
 # Search by file / machine-readable output
-python ~/.claude/skills/code-graph/scripts/query.py --root <project-root> --file src/main.kt
-python ~/.claude/skills/code-graph/scripts/query.py --root <project-root> <keyword> --json
+python ~/.claude/skills/code-graph/scripts/query.py --root <project-path> --file src/main.kt
+python ~/.claude/skills/code-graph/scripts/query.py --root <project-path> <keyword> --json
 ```
 
 Every `update.py` run regenerates `.code-graph/code-graph.html` — double-click to explore:
@@ -108,7 +111,7 @@ Every `update.py` run regenerates `.code-graph/code-graph.html` — double-click
 - Stays interactive even with thousands of nodes (Canvas rendering + force simulation)
 
 > To only re-render the HTML without rescanning source code:
-> `python ...\scripts\render_html.py --root <project-root>`
+> `python ...\scripts\render_html.py --root <project-path>`
 
 ## How it works
 
