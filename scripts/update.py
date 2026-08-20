@@ -101,7 +101,7 @@ TS_ARROW_RE = re.compile(r"^(?:export\s+)?(?:const|let|var)\s+([A-Za-z_$\w]*)\s*
 # TS class methods ("foo() {", "get name() {", "foo = () => {...}") have no
 # "function" keyword. "(?!...)" excludes control-flow statements that also
 # match "name(..." on the line.
-TS_METHOD_RE = re.compile(r"^(?:(?:public|private|protected|static|async|get|set)\s+)?(?!if\b|for\b|while\b|switch\b|catch\b|return\b|new\b|throw\b|do\b|else\b|typeof\b)[A-Za-z_$]\w*\s*\([^)]*\)\s*[{=]")
+TS_METHOD_RE = re.compile(r"^(?:(?:public|private|protected|static|async|get|set)\s+)?(?!if\b|for\b|while\b|switch\b|catch\b|return\b|new\b|throw\b|do\b|else\b|typeof\b)([A-Za-z_$]\w*)\s*\([^)]*\)\s*[{=]")
 # Group 1 = receiver type (func (r *T) M(...)), group 2 = method name.
 GO_FUNC_RE = re.compile(r"^func\s+(?:\(\s*\w+\s+\*?([A-Za-z_]\w*)\s*\)\s+)?([A-Za-z_]\w*)\s*\(")
 
@@ -293,7 +293,9 @@ def parse_text(info: FileInfo):
                 while owner_stack and owner_stack[-1][0] >= ind:
                     owner_stack.pop()
                 owner = owner_stack[-1][1] if owner_stack else None
-                name = m.group(1)
+                name = m.group(1) if m.lastindex else None
+            if name is None:
+                continue
             if sig_re is not None:
                 sm = sig_re.match(line)
                 sig = clean_signature(sm.group(0)) if sm else clean_signature(line)

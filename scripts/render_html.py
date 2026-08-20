@@ -305,6 +305,7 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2032%2032%27%3E%3Crect%20width%3D%2732%27%20height%3D%2732%27%20rx%3D%277%27%20fill%3D%27%230d1117%27%2F%3E%3Cg%20stroke%3D%27%238b949e%27%20stroke-opacity%3D%27.5%27%20stroke-width%3D%271.4%27%20fill%3D%27none%27%3E%3Cpath%20d%3D%27M16%206.5L16%2025.5M22.7%209.3L9.3%2022.7M25.5%2016L6.5%2016M22.7%2022.7L9.3%209.3%27%2F%3E%3C%2Fg%3E%3Ccircle%20cx%3D%2716%27%20cy%3D%276.5%27%20r%3D%272.2%27%20fill%3D%27%2379c0ff%27%2F%3E%3Ccircle%20cx%3D%2722.7%27%20cy%3D%279.3%27%20r%3D%272.2%27%20fill%3D%27%2356d364%27%2F%3E%3Ccircle%20cx%3D%2725.5%27%20cy%3D%2716%27%20r%3D%272.2%27%20fill%3D%27%23f0883e%27%2F%3E%3Ccircle%20cx%3D%2722.7%27%20cy%3D%2722.7%27%20r%3D%272.2%27%20fill%3D%27%23ff7b72%27%2F%3E%3Ccircle%20cx%3D%2716%27%20cy%3D%2725.5%27%20r%3D%272.2%27%20fill%3D%27%23bc8cff%27%2F%3E%3Ccircle%20cx%3D%279.3%27%20cy%3D%2722.7%27%20r%3D%272.2%27%20fill%3D%27%23f778ba%27%2F%3E%3Ccircle%20cx%3D%276.5%27%20cy%3D%2716%27%20r%3D%272.2%27%20fill%3D%27%2339c5cf%27%2F%3E%3Ccircle%20cx%3D%279.3%27%20cy%3D%279.3%27%20r%3D%272.2%27%20fill%3D%27%23d29922%27%2F%3E%3Ccircle%20cx%3D%2716%27%20cy%3D%2716%27%20r%3D%273.8%27%20fill%3D%27%23e6edf3%27%2F%3E%3Ccircle%20cx%3D%2716%27%20cy%3D%2716%27%20r%3D%272.4%27%20fill%3D%27%230d1117%27%2F%3E%3C%2Fsvg%3E">
 <title>依赖图</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -313,7 +314,8 @@ html, body { height: 100%; overflow: hidden; background: #10141c; color: #e2e8f0
 #toolbar { position: fixed; top: 0; left: 0; right: 0; height: 48px; z-index: 10;
   display: flex; align-items: center; gap: 8px; padding: 0 12px;
   background: #151b27; border-bottom: 1px solid #232c3d; }
-.brand { font-weight: 700; font-size: 13px; color: #7dd3fc; white-space: nowrap; }
+.brand { font-weight: 700; font-size: 13px; color: #7dd3fc; white-space: nowrap;
+  display: flex; align-items: center; gap: 7px; }
 .brand small { color: #64748b; font-weight: 400; font-size: 11px; margin-left: 8px; }
 .btn-group { display: flex; gap: 2px; }
 button { background: #1d2637; color: #cbd5e1; border: 1px solid #2c3a52;
@@ -375,7 +377,7 @@ label.chk { display: flex; align-items: center; gap: 4px; font-size: 12px;
 </head>
 <body>
 <div id="toolbar">
-  <div class="brand">CODE GRAPH <span id="proj"></span><small id="gen"></small></div>
+  <div class="brand"><svg width="18" height="18" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#0d1117"/><g stroke="#8b949e" stroke-opacity=".5" stroke-width="1.4" fill="none"><path d="M16 6.5L16 25.5M22.7 9.3L9.3 22.7M25.5 16L6.5 16M22.7 22.7L9.3 9.3"/></g><circle cx="16" cy="6.5" r="2.2" fill="#79c0ff"/><circle cx="22.7" cy="9.3" r="2.2" fill="#56d364"/><circle cx="25.5" cy="16" r="2.2" fill="#f0883e"/><circle cx="22.7" cy="22.7" r="2.2" fill="#ff7b72"/><circle cx="16" cy="25.5" r="2.2" fill="#bc8cff"/><circle cx="9.3" cy="22.7" r="2.2" fill="#f778ba"/><circle cx="6.5" cy="16" r="2.2" fill="#39c5cf"/><circle cx="9.3" cy="9.3" r="2.2" fill="#d29922"/><circle cx="16" cy="16" r="3.8" fill="#e6edf3"/><circle cx="16" cy="16" r="2.4" fill="#0d1117"/></svg> CODE GRAPH <span id="proj"></span><small id="gen"></small></div>
   <div class="btn-group" id="viewBtns"></div>
   <button id="relayout" title="重新运行布局">重新布局</button>
   <button id="fit" title="缩放平移以适配全部节点">适应窗口</button>
